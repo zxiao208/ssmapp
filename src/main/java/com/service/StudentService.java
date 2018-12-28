@@ -2,7 +2,7 @@ package com.service;
 
 import com.pojo.Student;
 
-public interface IStudentService {
+public interface StudentService {
     public void addStudent(Student student);
     public void deleteStudent(Student student);
 

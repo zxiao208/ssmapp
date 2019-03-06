@@ -1,7 +1,10 @@
 package com.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.pojo.Paper;
 import com.service.PaperService;
+import com.util.FastJsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,11 +64,16 @@ public class PaperController {
 
     @RequestMapping(value = "/phone/addPaper",produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String phoneaddPaper(@RequestBody String a){
-        String header1=request.getHeader("Connection");
-        System.out.println(header1);
-        System.out.println(a);
-        return a;
+    public String phoneaddPaper(@RequestBody String req){
+//        String header1=request.getHeader("Connection");
+//        Paper paper = FastJsonUtils.toBean(req,Paper.class);
+        return req;
     }
-
+    @RequestMapping(value = "/phone/slectallpaper",produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String selectallpaper(@RequestBody String req){
+        List<Paper> list = paperService.queryAllPaper();
+        String str = FastJsonUtils.toJSONString(list);
+        return str;
+    }
 }

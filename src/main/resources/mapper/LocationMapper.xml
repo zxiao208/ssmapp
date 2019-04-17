@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.LocationDao">
+    <resultMap type="MyLocation" id="locationResultMap" >
+        <id property="id" column="id"/>
+        <result property="num" column="num"/>
+        <result property="latitude" column="latitude"/>
+        <result property="longitude" column="longitude"/>
+        <result property="altitude" column="altitude"/>
+        <result property="accuracy" column="accuracy"/>
+        <result property="altitudeAccuracy" column="altitudeAccuracy"/>
+    </resultMap>
+    <insert id="addPaper" parameterType="MyLocation">
+        INSERT INTO mylocation(id,num,latitude,longitude,altitude,accuracy,altitudeAccuracy) VALUE (#{id},#{num}, #{latitude}, #{longitude}, #{altitude}, #{accuracy}, #{altitudeAccuracy})
+    </insert>
+
+    <delete id="deletePaperById" parameterType="int">
+        DELETE FROM mylocation WHERE num=#{num}
+    </delete>
+
+    <update id="updateLocation" parameterType="MyLocation">
+        UPDATE mylocation
+        SET latitude = #{latitude},longitude = #{longitude}
+        WHERE  num = #{num}
+    </update>
+
+    <select id="queryById" resultType="MyLocation" parameterType="int">
+        SELECT id,num,latitude,longitude,altitude,accuracy,altitudeAccuracy
+        FROM mylocation
+        WHERE num=#{num}
+    </select>
+
+
+</mapper>

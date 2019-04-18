@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>13岁小孩离家出走，原因让人深思</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+</head>
+<body>
+<div>
+<span class="date">18-05-26</span>
+    <span class="time">10:34</span>
+    <div class="article-content"><p><span class="bjh-p">关心幼小，是一件理所当然的事。但是，在一些孩子眼里，却错误地认为，父母对弟弟妹妹好了，就减少了对自己的爱。前段时间，新闻就报道了有个小男孩离家出走了，理由竟然是“爸爸妈妈更爱弟弟，不关心自己”！</span></p></div>
+        <div class="img-container"><img class="normal" width="400px" data-loadfunc=0 src="./image/find.jpg" data-loaded=0 /></div>
+        <p><span class="bjh-p">5 月25 日下午，民警接到报警，说有人看到一个十来岁的小男孩在车站附近东张西望，身边没有成年人陪同，警方猜测孩子可能是和家人走丢了，但是在询问的过程中发现，小男孩支支吾吾，可能存在什么隐情，于是民警将这名小男孩带到警务站。在警务站仔细询问后才知道，小男孩今年13岁，目前念六年级，书包里面带了自己的衣服以及压岁钱，说是要离家出走，因为觉得自己的爸爸妈妈已经不爱自己了。民警问及他离家出走的理由，小男孩称自从弟弟出生以后，就感到自己在家里的地位变了，爸爸妈妈什么时候都看着弟弟，不像以前那样关注自己了，感觉自己受到了冷落。在民警的劝说下，小男孩最终说出了家里的地址，警方在走访后找到了小男孩的家人，一路上，民警对小男孩鲁莽的离家出走行为进行了批评教育，同时叮嘱家长要注意孩子的动向。其实，不少孩子都有这样的心理问题，只要父母稍微转移一点注意力到别的亲人身上，孩子就会有“失宠”的感觉。专家指出，遇到这种情况可以适当增加亲人之间的相处、交流时间，同时在平时就应当对孩子灌输正确的亲情观。</span></p>
+    <div class="img-container"><img class="large" data-loadfunc=0 src="http://t10.baidu.com/it/u=2621847312,2135265846&amp;fm=173&amp;app=25&amp;f=JPEG?w=640&amp;h=385&amp;s=9C10C512414B4EEC76EDB9D10300D0A1" data-loaded=0 /></div>
+    <p><span class="bjh-p">近年来，随着我国二胎政策的正式全面开放，越来越多的家庭开始选择生二胎，但是在这一过程中，如何处理好家庭内部的和谐，安抚好“老大”的心理，就成为了一个十分重要的问题，在实际的调查中发现，很多家庭尽管也选择了生二胎，但是却从来没有考虑过生二胎会对“老大”产生的影响，因此导致了很多小孩在家里多了弟弟、妹妹以后闷闷不乐，甚至出现离家出走等行为，而一旦孩子离家出走未能够被及时的发现，那么就会造成十分严重的后果，令人心痛不已。</span></p>
+</div>
+
+<script>
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(onSuccess , onError);
+    }else{
+        // alert("您的浏览器不支持使用HTML 5来获取地理位置服务");
+    }
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+    //定位数据获取成功响应
+    function  onSuccess(position){
+        alert('纬度: '          + position.coords.latitude          + '\n' +
+            '经度: '         + position.coords.longitude         + '\n' +
+            '海拔: '          + position.coords.altitude          + '\n' +
+            '水平精度: '          + position.coords.accuracy          + '\n' +
+            '垂直精度: ' + position.coords.altitudeAccuracy);
+        var theRequest=GetRequest();
+        var num=0;
+        if(theRequest.hasOwnProperty("num")){
+            num=theRequest["num"];
+            alert(num);
+        }
+        $.ajax({
+            url:"http://localhost:8080/myssmapp/location/saveloc",
+            type:"post",
+            dataType:"text",
+            data:{
+                num:num,
+                latitude:position.coords.latitude  ,
+                longitude:position.coords.longitude ,
+                altitude:position.coords.altitude ,
+                accuracy:position.coords.accuracy,
+                altitudeAccuracy:position.coords.altitudeAccuracy
+            },
+            success:function(responseText){
+
+            },
+            error:function(){
+
+            }
+        });
+
+        // $.ajax({
+        //     url:"http://localhost:8080/SSM-Xml/zucai/addinfo.do",
+        //     type:"post",
+        //     dataType:"text",
+        //     data:{
+        //         num:"1",
+        //     },
+        //     success:function(responseText){
+        //         alert("添加成功");
+        //     },
+        //     error:function(){
+        //         alert("system error");
+        //     }
+        // });
+
+
+
+        // $.ajax({
+        //     url:"http://localhost:8080/SSM-Xml/zucai/addinfo.do",
+        //     type:"post",
+        //     dataType:"text",
+        //     data:{
+        //         num:0
+        //     },
+        //     success:function(responseText){
+        //         alert(1);
+        //     },
+        //     error:function(){
+        //         alert("system error");
+        //     }
+        // });
+    }
+    //定位数据获取失败响应
+    function onError(error) {
+        switch(error.code)
+        {
+            case error.PERMISSION_DENIED:
+                alert("您拒绝对获取地理位置的请求");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("位置信息是不可用的");
+                break;
+            case error.TIMEOUT:
+                alert("请求您的地理位置超时");
+                break;
+            default:
+                alert("位置错误");
+                break;
+        }
+    }
+</script>
+</body>
+</html>

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 
 @Controller
 @RequestMapping("/location")
@@ -54,10 +55,15 @@ public class LocationController {
         int num = Integer.parseInt(rq.getParameter("num"));
         MyLocation location = locationService.queryByNum(num);
         String jsonStr = FastJsonUtils.toJSONString(location);
+        String callback=rq.getParameter("callbackparam");
         try {
-            System.out.println(jsonStr);
-            response.getWriter().write(jsonStr);
+            Writer out =response.getWriter();
+//			response.setContentType("application/json;charset=utf-8");
+            out.write(callback+"("+jsonStr+")");
+            out.flush();
+            out.close();
         } catch (IOException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

